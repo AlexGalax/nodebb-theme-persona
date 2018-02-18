@@ -1,6 +1,9 @@
 'use strict';
 
+<<<<<<< HEAD
 var async = require('async');
+=======
+>>>>>>> refs/remotes/NodeBB/master
 var striptags = require('striptags');
 var meta = module.parent.require('./meta');
 var user = module.parent.require('./user');
@@ -72,7 +75,11 @@ library.addAdminNavigation = function(header, callback) {
 library.getTeasers = function(data, callback) {
 	data.teasers.forEach(function(teaser) {
 		if (teaser && teaser.content) {
+<<<<<<< HEAD
 			teaser.content = striptags(reaser.content, ['img']);
+=======
+			teaser.content = striptags(teaser.content, ['img']);
+>>>>>>> refs/remotes/NodeBB/master
 		}
 	});
 	callback(null, data);
@@ -171,6 +178,7 @@ library.addUserToTopic = function(data, callback) {
 	}
 };
 
+<<<<<<< HEAD
 library.parsePost = function (payload, callback) {
 
 	var content = payload.postData.content,
@@ -199,6 +207,16 @@ library.parsePost = function (payload, callback) {
 		callback(null, payload);
 	});
 
+=======
+library.getLinkTags = function (data, callback) {
+	data.links.push({
+		rel: 'prefetch stylesheet',
+		type: '',
+		href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700',
+	});
+
+	callback(null, data);
+>>>>>>> refs/remotes/NodeBB/master
 };
 
 module.exports = library;

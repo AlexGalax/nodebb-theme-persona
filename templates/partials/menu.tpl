@@ -1,17 +1,21 @@
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" id="mobile-menu">
-					<span component="notifications/icon" class="notification-icon fa fa-fw fa-bell-o" data-content="0"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
+				<button type="button" class="navbar-toggle pull-left" id="mobile-menu">
+					<span component="notifications/icon" class="notification-icon fa fa-fw fa-bell-o unread-count" data-content="{unreadCount.notification}"></span>
+					<i class="fa fa-lg fa-bars"></i>
+				</button>
+				<button type="button" class="navbar-toggle hidden" id="mobile-chats">
+					<span component="chat/icon" class="notification-icon fa fa-fw fa-comments unread-count" data-content="{unreadCount.chat}"></span>
+					<i class="fa fa-lg fa-comment-o"></i>
 				</button>
 
+				<!-- IF brand:logo -->
 				<a href="<!-- IF brand:logo:url -->{brand:logo:url}<!-- ELSE -->{relative_path}/<!-- ENDIF brand:logo:url -->">
 					<img alt="{brand:logo:alt}" class="{brand:logo:display} forum-logo" src="{brand:logo}" />
 				</a>
+				<!-- ENDIF brand:logo -->
 				<!-- IF config.showSiteTitle -->
-				<a href="{relative_path}/">
-					<h1 class="navbar-brand forum-title">{title}</h1>
+				<a href="<!-- IF title:url -->{title:url}<!-- ELSE -->{relative_path}/<!-- ENDIF title:url -->">
+					<h1 class="navbar-brand forum-title">{config.siteTitle}</h1>
 				</a>
 				<!-- ENDIF config.showSiteTitle -->
 
@@ -26,8 +30,8 @@
 
 				<ul id="logged-in-menu" class="nav navbar-nav navbar-right">
 					<li class="notifications dropdown text-center hidden-xs" component="notifications">
-						<a href="#" title="[[global:header.notifications]]" class="dropdown-toggle" data-toggle="dropdown" id="notif_dropdown">
-							<i component="notifications/icon" class="fa fa-fw fa-bell-o" data-content="0"></i>
+						<a href="{relative_path}/notifications" title="[[global:header.notifications]]" class="dropdown-toggle" data-toggle="dropdown" id="notif_dropdown" data-ajaxify="false" role="button">
+							<i component="notifications/icon" class="fa fa-fw fa-bell-o unread-count" data-content="{unreadCount.notification}"></i>
 						</a>
 						<ul class="dropdown-menu" aria-labelledby="notif_dropdown">
 							<li>
@@ -44,8 +48,8 @@
 
 					<!-- IF !config.disableChat -->
 					<li class="chats dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#" title="[[global:header.chats]]" id="chat_dropdown" component="chat/dropdown">
-							<i component="chat/icon" class="fa fa-comment-o fa-fw"></i> <span class="visible-xs-inline">[[global:header.chats]]</span>
+						<a class="dropdown-toggle" data-toggle="dropdown" href="{relative_path}/user/{user.userslug}/chats" title="[[global:header.chats]]" id="chat_dropdown" component="chat/dropdown" data-ajaxify="false" role="button">
+							<i component="chat/icon" class="fa fa-comment-o fa-fw unread-count" data-content="{unreadCount.chat}"></i> <span class="visible-xs-inline">[[global:header.chats]]</span>
 						</a>
 						<ul class="dropdown-menu" aria-labelledby="chat_dropdown">
 							<li>
@@ -62,11 +66,15 @@
 					<!-- ENDIF !config.disableChat -->
 
 					<li id="user_label" class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="user_dropdown" title="[[global:header.profile]]">
-							<img component="header/userpicture" src="{user.picture}" alt="{user.username}"<!-- IF !user.picture --> style="display: none;"<!-- ENDIF !user.picture --> />
-							<div component="header/usericon" class="user-icon" style="background-color: {user.icon:bgColor};<!-- IF user.picture --> display: none;"<!-- ENDIF user.picture -->">{user.icon:text}</div>
+						<label for="user-control-list-check" class="dropdown-toggle" data-toggle="dropdown" id="user_dropdown" title="[[global:header.profile]]" role="button">
+							<!-- IF user.picture -->
+							<img component="header/userpicture" src="{user.picture}" alt="{user.username}"/>
+							<!-- ELSE -->
+							<span component="header/usericon" class="user-icon" style="background-color: {user.icon:bgColor}; display: block;">{user.icon:text}</span>
+							<!-- ENDIF user.picture --> 
 							<span id="user-header-name" class="visible-xs-inline">{user.username}</span>
-						</a>
+						</label>
+						<input type="checkbox" class="hidden" id="user-control-list-check" aria-hidden="true">
 						<ul id="user-control-list" component="header/usercontrol" class="dropdown-menu" aria-labelledby="user_dropdown">
 							<li>
 								<a component="header/profilelink" href="{relative_path}/user/{user.userslug}">
@@ -113,6 +121,11 @@
 									<i class="fa fa-fw fa-flag"></i> <span>[[pages:flagged-content]]</span>
 								</a>
 							</li>
+							<li>
+								<a href="{relative_path}/post-queue">
+									<i class="fa fa-fw fa-list-alt"></i> <span>[[pages:post-queue]]</span>
+								</a>
+							</li>
 							<!-- IF isAdmin -->
 							<li>
 								<a href="{relative_path}/ip-blacklist">
@@ -123,7 +136,13 @@
 							<!-- ENDIF showModMenu -->
 							<li role="presentation" class="divider"></li>
 							<li component="user/logout">
-								<a href="#"><i class="fa fa-fw fa-sign-out"></i><span> [[global:logout]]</span></a>
+								<form method="post" action="{relative_path}/logout">
+									<input type="hidden" name="_csrf" value="{config.csrf_token}">
+									<input type="hidden" name="noscript" value="true">
+									<button type="submit" class="btn btn-link">
+										<i class="fa fa-fw fa-sign-out"></i><span> [[global:logout]]</span>
+									</button>
+								</form>
 							</li>
 						</ul>
 					</li>
@@ -150,7 +169,7 @@
 				<!-- IF config.searchEnabled -->
 				<ul class="nav navbar-nav navbar-right">
 					<li>
-						<form id="search-form" class="navbar-form navbar-right hidden-xs" role="search" method="GET" action="">
+						<form id="search-form" class="navbar-form navbar-right hidden-xs" role="search" method="GET">
 							<button id="search-button" type="button" class="btn btn-link"><i class="fa fa-search fa-fw" title="[[global:header.search]]"></i></button>
 							<div class="hidden" id="search-fields">
 								<div class="form-group">
@@ -171,7 +190,7 @@
 
 				<ul class="nav navbar-nav navbar-right hidden-xs">
 					<li>
-						<a href="#" id="reconnect" class="hide" title="Connection to {title} has been lost, attempting to reconnect...">
+						<a href="#" id="reconnect" class="hide" title="Connection to {config.siteTitle} has been lost, attempting to reconnect...">
 							<i class="fa fa-check"></i>
 						</a>
 					</li>
@@ -194,8 +213,10 @@
 						</div>
 
 						<ul class="dropdown-menu" role="menu">
-  							<input type="text" class="form-control" id="indexInput" placeholder="[[global:pagination.enter_index]]">
-  						</ul>
+							<li>
+  								<input type="text" class="form-control" id="indexInput" placeholder="[[global:pagination.enter_index]]">
+  							</li>
+						</ul>
 					</li>
 				</ul>
 
@@ -205,7 +226,7 @@
 					<li class="{navigation.class}">
 						<a class="navigation-link" href="{navigation.route}" title="{navigation.title}" <!-- IF navigation.id -->id="{navigation.id}"<!-- ENDIF navigation.id --><!-- IF navigation.properties.targetBlank --> target="_blank"<!-- ENDIF navigation.properties.targetBlank -->>
 							<!-- IF navigation.iconClass -->
-							<i class="fa fa-fw {navigation.iconClass}"></i>
+							<i class="fa fa-fw {navigation.iconClass}" data-content="{navigation.content}"></i>
 							<!-- ENDIF navigation.iconClass -->
 
 							<!-- IF navigation.text -->

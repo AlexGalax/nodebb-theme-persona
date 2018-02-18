@@ -8,16 +8,21 @@
 		{ "hook": "static:app.load", "method": "init" },
 		{ "hook": "filter:admin.header.build", "method": "addAdminNavigation" },
 		{ "hook": "filter:topic.build", "method": "addUserToTopic" },
+<<<<<<< HEAD
 		{ "hook": "filter:parse.post",      "method": "parsePost" }
+=======
+		{ "hook": "filter:meta.getLinkTags", "method": "getLinkTags"}
+>>>>>>> refs/remotes/NodeBB/master
 	],
 	"scripts": [
 		"lib/persona.js",
 		"lib/modules/nprogress.js",
 		"lib/modules/autohidingnavbar.min.js",
-		"lib/modules/slideout.min.js",
-		"lib/modules/quickreply.js",
-		"lib/client/chats.js"
+		"lib/modules/quickreply.js"
 	],
+	"modules": {
+		"pulling.js": "node_modules/pulling/build/pulling-drawer.js"
+	},
 	"acpScripts": [
 		"lib/admin.js"
 <<<<<<< HEAD

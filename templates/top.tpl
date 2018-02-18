@@ -4,7 +4,7 @@
 	{{widgets.header.html}}
 	<!-- END widgets.header -->
 </div>
-<div class="recent">
+<div class="top">
 	<div class="btn-toolbar">
 		<div class="pull-left">
 			<!-- IF loggedIn -->
@@ -49,7 +49,7 @@
 
 	<div class="category">
 		<!-- IF !topics.length -->
-		<div class="alert alert-warning" id="category-no-topics">[[recent:no_recent_topics]]</div>
+		<div class="alert alert-warning" id="category-no-topics">[[top:no_top_topics]]</div>
 		<!-- ENDIF !topics.length -->
 
 		<a href="{config.relative_path}/{selectedFilter.url}{querystring}">

@@ -17,6 +17,18 @@
 			<span class="topic-title" component="topic/title">{title}</span>
 		</h1>
 
+		<div component="topic/merged/message" class="alert alert-warning<!-- IF !merger --> hidden<!-- ENDIF !merger --> clearfix">
+			<span class="pull-left">[[topic:merged_message, {mergeIntoTid}, {merger.mergedIntoTitle}]]</span>
+			<span class="pull-right">
+				<!-- IF merger -->
+				<a href="{config.relative_path}/user/{merger.userslug}">
+					<strong>{merger.username}</strong>
+				</a>
+				<small class="timeago" title="{mergedTimestampISO}"></small>
+				<!-- ENDIF merger -->
+			</span>
+		</div>
+
 		<div component="topic/deleted/message" class="alert alert-warning<!-- IF !deleted --> hidden<!-- ENDIF !deleted --> clearfix">
 			<span class="pull-left">[[topic:deleted_message]]</span>
 			<span class="pull-right">
@@ -34,7 +46,7 @@
 		<ul component="topic" class="posts" data-tid="{tid}" data-cid="{cid}">
 			<!-- BEGIN posts -->
 				<li component="post" class="<!-- IF posts.deleted -->deleted<!-- ENDIF posts.deleted -->" <!-- IMPORT partials/data/topic.tpl -->>
-					<a component="post/anchor" data-index="{posts.index}" name="{posts.index}"></a>
+					<a component="post/anchor" data-index="{posts.index}" id="{posts.index}"></a>
 
 					<meta itemprop="datePublished" content="{posts.timestampISO}">
 					<meta itemprop="dateModified" content="{posts.editedISO}">

@@ -12,7 +12,7 @@
 
 		<div class="clearfix">
 			<!-- IF privileges.topics:create -->
-			<button component="category/post" id="new_topic" class="btn btn-primary">[[category:new_topic_button]]</button>
+			<a href="{config.relative_path}/compose?cid={cid}" component="category/post" id="new_topic" class="btn btn-primary" data-ajaxify="false" role="button">[[category:new_topic_button]]</a>
 			<!-- ELSE -->
 				<!-- IF !loggedIn -->
 				<a component="category/post/guest" href="{config.relative_path}/login" class="btn btn-primary">[[category:guest-login-post]]</a>
@@ -31,10 +31,17 @@
 		<p class="hidden-xs">{name}</p>
 
 		<!-- IF !topics.length -->
+		<!-- IF privileges.topics:create -->
+		<hr class="visible-xs" />
 		<div class="alert alert-warning" id="category-no-topics">
 			[[category:no_topics]]
 		</div>
+		<!-- ENDIF privileges.topics:create -->
 		<!-- ENDIF !topics.length -->
+
+		<a href="{url}">
+			<div class="alert alert-warning hide" id="new-topics-alert"></div>
+		</a>
 
 		<!-- IMPORT partials/topics_list.tpl -->
 

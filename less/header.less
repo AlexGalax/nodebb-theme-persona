@@ -1,4 +1,4 @@
-#menu, .header {
+.header, .slideout-menu {
 	.notification-list {
 		overflow-x: hidden;
 		overflow-y: auto;
@@ -293,10 +293,9 @@
 }
 
 .unread-count:after {
-	content: attr(data-content);
 	position: absolute;
-    	left: 23px;
-    	top: 10px;
+	left: 23px;
+	top: 10px;
 	font-size: 10px;
 	text-align: center;
 	border: 1px solid #890405;
@@ -311,10 +310,14 @@
 	font-family: @font-family-sans-serif;
 }
 
-#mobile-menu [component="notifications/icon"].unread-count:after, .slideout-menu .unread-count:after {
+.unread-count[data-content]:not([data-content=""]):not([data-content="0"]):after {
+	content: attr(data-content);
+}
+
+.slideout-menu .unread-count:after {
 	position: relative;
-    	left: -6px;
-    	top: -7px;
+	left: -6px;
+	top: -7px;
 }
 
 #search-form {
@@ -369,5 +372,81 @@ body.skin-default .header {
 				color: inherit;
 			}
 		}
+	}
+}
+
+label.dropdown-toggle {
+	cursor: pointer;
+	margin: 0;
+}
+
+#user-control-list-check:checked + #user-control-list {
+	display: block;
+}
+
+.navbar-default {
+	.navbar-nav {
+		> li > label {
+			color: @navbar-default-link-color;
+
+			&:hover,
+			&:focus {
+				color: @navbar-default-link-hover-color;
+				background-color: @navbar-default-link-hover-bg;
+			}
+		}
+		> .active > label {
+			&,
+			&:hover,
+			&:focus {
+				color: @navbar-default-link-active-color;
+				background-color: @navbar-default-link-active-bg;
+			}
+		}
+		> .disabled > label {
+			&,
+			&:hover,
+			&:focus {
+				color: @navbar-default-link-disabled-color;
+				background-color: @navbar-default-link-disabled-bg;
+			}
+		}
+		> .open > label {
+			&,
+			&:hover,
+			&:focus {
+				background-color: @navbar-default-link-active-bg;
+				color: @navbar-default-link-active-color;
+			}
+		}
+	}
+}
+
+.dropdown-menu > li > form {
+	> button, > .btn-link {
+		text-align: left;
+		width: 100%;
+		background: none;
+		border: none;
+		display: block;
+		padding: 3px 20px;
+		clear: both;
+		font-weight: normal;
+		line-height: @line-height-base;
+		color: @dropdown-link-color;
+		white-space: nowrap; // prevent links from randomly breaking onto new lines
+
+		&:hover,
+		&:focus {
+			text-decoration: none;
+			color: @dropdown-link-hover-color;
+			background-color: @dropdown-link-hover-bg;
+		}
+	}
+}
+
+html[data-dir="rtl"] {
+	.dropdown-menu > li > form > button {
+		text-align: right;
 	}
 }

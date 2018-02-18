@@ -130,12 +130,26 @@
 		color: @gray-light;
 	}
 
-	h2.title .description {
-		font-size: 65%;
+	.description {
+		font-size: 1.2rem;
 		font-weight: normal;
-		line-height: 1;
+		line-height: 1.2;
 		color: @gray-light;
 		margin-top: 5px;
+		min-height: 25px
+	}
+
+	.description, .category-children {
+		margin-left: 62px;
+	}
+
+	.category-children {
+		display: block;
+		font-size: 15px;
+
+		small {
+			color: #999999;
+		}
 	}
 
 	.category-children{
@@ -191,3 +205,22 @@
 	max-height: 500px;
 	overflow-y: auto;
 }
+<<<<<<< HEAD
+=======
+
+.merge-topic-card {
+	position: fixed;
+	bottom: 10%;
+	right: 2rem;
+	z-index: 1;
+	.topics-section {
+		text-align: center;
+	}
+}
+
+@media screen and (min-width: @screen-sm-min) {
+	.merge-topic-card {
+		max-width: 33%;
+	}
+}
+>>>>>>> refs/remotes/NodeBB/master
