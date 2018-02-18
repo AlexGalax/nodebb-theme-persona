@@ -1,26 +1,58 @@
 'use strict';
 
-var S = require.main.require('string');
+var async = require('async');
+var striptags = require('striptags');
 var meta = module.parent.require('./meta');
 var user = module.parent.require('./user');
 
 var library = {};
 
+var app, themeConfig;
+
+var rulesList = [
+	{
+		name: 'facebook',
+		match: /(?:<a.*?)?((?:https?:\/\/)?(?:www\.)?(?:facebook\.com\/(?:.*)\/)([a-zA-Z0-9/_-]{6,}))["|'](?:.*?\/a>)?/g,
+		template: 'partials/amp-facebook'
+	},{
+		name: 'twitter',
+		match: /(?:<a.*?)?(?:https?:\/\/)?(?:www\.)?(?:twitter\.com\/(?:.*)\/)([a-zA-Z0-9_-]{6,20})(?:.*?\/a>)?/g,
+		template: 'partials/amp-twitter'
+	},{
+		name: 'instagram',
+		match: /(?:<a.*?)?(?:https?:\/\/)?(?:www\.)?(?:instagram\.com\/p\/)([a-zA-Z0-9_-]{6,20})(?:.*?\/a>)?/g,
+		template: 'partials/amp-instagram'
+	},{
+		name: 'soundcloud-track',
+		match: /(?:<a.*?)?(?:https?:\/\/)?(?:api\.)?(?:soundcloud\.com\/tracks\/)([0-9]{6,20})(?:.*?\/a>)/g,
+		template: 'partials/amp-soundcloud-track'
+	},{
+		name: 'soundcloud-playlist',
+		match: /(?:<a.*?)?(?:https?:\/\/)?(?:api\.)?(?:soundcloud\.com\/playlists\/)([0-9]{6,20})(?:.*?\/a>)/g,
+		template: 'partials/amp-soundcloud-playlist'
+	},{
+		name: 'mp3',
+		match: /<a .*?href=["|'](https?:\/\/.*?\.mp3)["|'].*?<\/a>/g,
+		template: 'partials/amp-audio'
+	}
+];
+
 library.init = function(params, callback) {
-	var app = params.router;
+	app = params.app;
+	var router = params.router;
 	var middleware = params.middleware;
 
-	app.get('/admin/plugins/persona', middleware.admin.buildHeader, renderAdmin);
-	app.get('/api/admin/plugins/persona', renderAdmin);
+	router.get('/admin/plugins/soleclub', middleware.admin.buildHeader, renderAdmin);
+	router.get('/api/admin/plugins/soleclub', renderAdmin);
 
 	callback();
 };
 
 library.addAdminNavigation = function(header, callback) {
 	header.plugins.push({
-		route: '/plugins/persona',
+		route: '/plugins/soleclub',
 		icon: 'fa-paint-brush',
-		name: 'Persona Theme'
+		name: 'SoleClub Theme'
 	});
 
 	callback(null, header);
@@ -29,7 +61,7 @@ library.addAdminNavigation = function(header, callback) {
 library.getTeasers = function(data, callback) {
 	data.teasers.forEach(function(teaser) {
 		if (teaser && teaser.content) {
-			teaser.content = S(teaser.content).stripTags('img').s;
+			teaser.content = striptags(reaser.content, ['img']);
 		}
 	});
 	callback(null, data);
@@ -89,17 +121,20 @@ library.defineWidgetAreas = function(areas, callback) {
 
 library.getThemeConfig = function(config, callback) {
 
-	meta.settings.get('persona', function(err, settings) {
+	meta.settings.get('soleclub', function(err, settings) {
 		config.hideSubCategories = settings.hideSubCategories === 'on';
 		config.hideCategoryLastPost = settings.hideCategoryLastPost === 'on';
 		config.enableQuickReply = settings.enableQuickReply === 'on';
+		config.enableAmpSupport = settings.enableAmpSupport === 'on';
 	});
+
+	themeConfig = config;
 
 	callback(false, config);
 };
 
 function renderAdmin(req, res, next) {
-	res.render('admin/plugins/persona', {});
+	res.render('admin/plugins/soleclub', {});
 }
 
 library.addUserToTopic = function(data, callback) {
@@ -108,13 +143,43 @@ library.addUserToTopic = function(data, callback) {
 			if (err) {
 				return callback(err);
 			}
-			
+
 			data.templateData.loggedInUser = userdata;
 			callback(null, data);
 		});
 	} else {
 		callback(null, data);
 	}
+};
+
+library.parsePost = function (payload, callback) {
+
+	var content = payload.postData.content,
+		matches, result;
+
+	if (!content) {
+		return callback(null, payload);
+	}
+
+	async.reduce(rulesList, content, function(content, rule, nextRule) {
+		matches = content.match(rule.match);
+		async.reduce(matches, content, function(content, match, nextMatch) {
+			result = rule.match.exec(match);
+			app.render(rule.template, {
+				dataid: result[1]
+			}, function(err, html) {
+				console.log(content);
+				content = content.replace(result[0], html);
+				nextMatch(null, content);
+			});
+		},function(err, result){
+			nextRule(null, result)
+		});
+	}, function(err, result){
+		payload.postData.content = result;
+		callback(null, payload);
+	});
+
 };
 
 module.exports = library;

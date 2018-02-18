@@ -137,6 +137,39 @@
 		color: @gray-light;
 		margin-top: 5px;
 	}
+
+	.category-children{
+		> .category-children-item{
+			margin-right: 10px;
+			.icon{
+				position: relative;
+				z-index: 2;
+				font-size: 14px;
+				line-height: 14px;
+				padding: 11px;
+				min-width: 36px;
+    			min-height: 36px;
+			}
+			a{
+				z-index: 1;
+				background: lighten(@gray-light, 25%);
+				display: inline-block;
+				min-height: 36px;
+				padding: 3px;
+				margin-left: -40px;
+				margin-top: 2px;
+				padding-right: 20px;
+				padding-left: 35px;
+				font-size: 20px;
+				line-height: 23px;
+				border-bottom-right-radius: 20px;
+				border-top-right-radius: 20px;
+				small{
+					color: #00ccc2;
+				}
+			}
+		}
+	}
 }
 
 .categories-title {

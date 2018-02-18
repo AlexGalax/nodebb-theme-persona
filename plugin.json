@@ -1,5 +1,5 @@
 {
-	"id": "nodebb-theme-persona",
+	"id": "nodebb-theme-soleclub",
 	"library": "library.js",
 	"hooks": [
 		{ "hook": "filter:teasers.get", "method": "getTeasers" },
@@ -7,7 +7,8 @@
 		{ "hook": "filter:config.get", "method": "getThemeConfig" },
 		{ "hook": "static:app.load", "method": "init" },
 		{ "hook": "filter:admin.header.build", "method": "addAdminNavigation" },
-		{ "hook": "filter:topic.build", "method": "addUserToTopic" }
+		{ "hook": "filter:topic.build", "method": "addUserToTopic" },
+		{ "hook": "filter:parse.post",      "method": "parsePost" }
 	],
 	"scripts": [
 		"lib/persona.js",
@@ -19,5 +20,6 @@
 	],
 	"acpScripts": [
 		"lib/admin.js"
-	]
+	],
+	"templates": "templates"
 }

@@ -1,0 +1,547 @@
+// Yeti 3.3.7
+// Bootswatch
+// -----------------------------------------------------
+
+@web-font-path: "https://fonts.googleapis.com/css?family=Roboto:300,400,700";
+.web-font(@path) {
+  @import url("@{path}");
+}
+.web-font(@web-font-path);
+
+a, .btn{
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+
+.brand-primary-gradient{
+  	@gradient-primary-left: lighten(spin(@brand-primary, -8), 3%);
+  	@gradient-primary-right: darken(spin(@brand-primary, 8), 3%);
+	background: @brand-primary;
+	background: -moz-linear-gradient(left, @gradient-primary-left 0%, @brand-primary 50%, @gradient-primary-right 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left, @gradient-primary-left 0%, @brand-primary 50%, @gradient-primary-right 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, @gradient-primary-left 0%, @brand-primary 50%, @gradient-primary-right 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@gradient-primary-left', endColorstr='@gradient-primary-right',GradientType=1 ); /* IE6-9 */
+}
+.brand-primary-gradient-inverse{
+  	@gradient-primary-right: lighten(spin(@brand-primary, -8), 3%);
+  	@gradient-primary-left: darken(spin(@brand-primary, 8), 3%);
+	background: @brand-primary;
+	background: -moz-linear-gradient(left, @gradient-primary-left 0%, @brand-primary 50%, @gradient-primary-right 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left, @gradient-primary-left 0%, @brand-primary 50%, @gradient-primary-right 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, @gradient-primary-left 0%, @brand-primary 50%, @gradient-primary-right 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@gradient-primary-left', endColorstr='@gradient-primary-right',GradientType=1 ); /* IE6-9 */
+}
+.brand-info-gradient{
+  	@gradient-info-left: lighten(spin(@brand-info, 8), 3%);
+  	@gradient-info-right: darken(spin(@brand-info, -8), 3%);
+	background: @brand-info;
+	background: -moz-linear-gradient(left, @gradient-info-left 0%, @brand-info 50%, @gradient-info-right 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left, @gradient-info-left 0%, @brand-info 50%, @gradient-info-right 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, @gradient-info-left 0%, @brand-info 50%, @gradient-info-right 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@gradient-info-left', endColorstr='@gradient-info-right',GradientType=1 ); /* IE6-9 */
+}
+.brand-info-gradient-inverse{
+  	@gradient-info-right: lighten(spin(@brand-info, 8), 3%);
+  	@gradient-info-left: darken(spin(@brand-info, -8), 3%);
+	background: @brand-info;
+	background: -moz-linear-gradient(left, @gradient-info-left 0%, @brand-info 50%, @gradient-info-right 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left, @gradient-info-left 0%, @brand-info 50%, @gradient-info-right 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, @gradient-info-left 0%, @brand-info 50%, @gradient-info-right 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='@gradient-info-left', endColorstr='@gradient-info-right',GradientType=1 ); /* IE6-9 */
+}
+.gradient-text{
+  	-webkit-text-fill-color: transparent;
+  	-webkit-background-clip: text;
+}
+
+a, a:link{
+  //.brand-primary-gradient();
+  //.gradient-text();
+}
+
+.btn-group{
+    &.is-primary{
+        .brand-primary-gradient();
+    }
+    .btn{
+        &.btn-primary{
+            background: none;
+        }
+    }
+}
+
+
+#nprogress .bar {
+  .brand-primary-gradient();
+}
+
+// Navbar =====================================================================
+.navbar {
+  border: none;
+  font-size: 13px;
+  font-weight: 300;
+
+  .navbar-toggle:hover .icon-bar {
+    background-color: #b3b3b3;
+  }
+  &-collapse {
+    border-top-color: @dropdown-divider-bg;
+    .box-shadow(none);
+  }
+  .btn {
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+  &-form {
+    margin-top: 7px;
+    margin-bottom: 5px;
+    .form-control {
+      height: auto;
+      padding: @padding-xs-vertical @padding-xs-horizontal;
+      background-color: fade(@input-bg, 20%);
+      border-color: fade(@input-border, 20%);
+      &:focus{
+        background-color: @input-bg;
+      	border-color: @input-border;
+      }
+    }
+  }
+  &-text {
+    margin: 12px 15px;
+    line-height: 21px;
+  }
+
+  .dropdown {
+    &-menu {
+      > li > a,
+      > li > a:focus {
+        font-weight: 300;
+      }
+    }
+  }
+
+  &-default {
+    .brand-info-gradient();
+    .dropdown-menu {
+      > li > a:hover,
+      > .active > a,
+      > .active > a:hover {
+        color: @navbar-default-link-hover-color;
+        .brand-info-gradient();
+        .gradient-text();
+      }
+    }
+  }
+
+  &-inverse {
+	.brand-primary-gradient();
+    .dropdown-menu {
+      > li > a:hover,
+      > .active > a,
+      > .active > a:hover {
+        color: @navbar-inverse-link-hover-color;
+        .brand-primary-gradient();
+        .gradient-text();
+      }
+    }
+  }
+}
+
+
+// Labels =====================================================================
+.label-primary{
+  .brand-primary-gradient();
+}
+.label-info{
+  .brand-info-gradient();
+}
+
+// Alerts =====================================================================
+.alert{
+  &.alert-primary{
+    border-color: @btn-primary-border;
+    color: @btn-primary-color;
+  	.brand-primary-gradient();
+  }
+  &.alert-info{
+    .brand-info-gradient();
+  }
+}
+
+// Lists =====================================================================
+.list-group-item{
+  &.active{
+    &:link, &:hover, &:focus{
+      .brand-primary-gradient();
+    }
+  }
+}
+// Panels =====================================================================
+.panel-primary{
+  > .panel-heading{
+    .brand-primary-gradient();
+  }
+}
+.panel-info{
+  > .panel-heading{
+    .brand-info-gradient();
+  }
+}
+
+// Progress bars =====================================================================
+.progress-bar{
+  &:not(.progress-bar-success):not(.progress-bar-warning):not(.progress-bar-danger):not(.progress-bar-info){
+  	.brand-primary-gradient();
+  }
+}
+.progress-bar-info{
+  .brand-info-gradient();
+}
+
+
+// Buttons ====================================================================
+
+.btn {
+  border: none;
+  padding: @padding-base-vertical @padding-base-horizontal;
+  &-lg {
+    padding: @padding-large-vertical @padding-large-horizontal;
+  }
+
+  &-sm {
+    padding: @padding-small-vertical @padding-small-horizontal;
+  }
+
+  &-xs {
+    padding: @padding-xs-vertical @padding-xs-horizontal;
+  }
+  &.btn-default:hover{
+    background-color: @btn-default-bg;
+    border-color: @btn-default-border;
+    color: @brand-primary;
+  }
+  &.btn-primary{
+    .brand-primary-gradient();
+  	&:hover{
+    	.brand-primary-gradient-inverse();
+  	}
+  }
+  &.btn-success:hover{
+    background-color: darken(@btn-success-bg, 10%);
+    border-color: darken(@btn-success-border, 10%);
+  }
+  &.btn-info{
+    .brand-info-gradient();
+  	&:hover{
+    	.brand-info-gradient-inverse();
+  	}
+  }
+  &.btn-warning:hover{
+    background-color: darken(@btn-warning-bg, 5%);
+    border-color: darken(@btn-warning-border, 5%);
+  }
+  &.btn-danger:hover{
+    background-color: darken(@btn-danger-bg, 15%);
+    border-color: darken(@btn-danger-border, 15%);
+  }
+}
+
+.btn-group {
+
+  .btn ~ .dropdown-toggle {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .dropdown-menu {
+    border-top-width: 0;
+  }
+
+  &.dropup .dropdown-menu {
+    border-top-width: 1px;
+    border-bottom-width: 0;
+    margin-bottom: 0;
+  }
+
+  .dropdown-toggle {
+
+    &.btn-default ~ .dropdown-menu {
+      > li > a:hover {
+        //color: @btn-default-color;
+        color: @link-color;
+      }
+    }
+    &.btn-primary ~ .dropdown-menu {
+      > li > a:hover {
+        // color: @btn-primary-color;
+        color: @link-color;
+      }
+    }
+    &.btn-info ~ .dropdown-menu {
+      > li > a:hover {
+        color: @btn-info-color;
+      }
+    }
+    &.btn-success ~ .dropdown-menu {
+      > li > a:hover {
+        color: @btn-success-bg;
+      }
+    }
+	&.btn-warning ~ .dropdown-menu {
+      > li > a:hover {
+        color: @btn-warning-bg;
+      }
+    }
+    &.btn-danger ~ .dropdown-menu {
+      > li > a:hover {
+        color: @btn-danger-bg;
+      }
+    }
+  }
+}
+
+// Typography =================================================================
+
+.lead {
+  color: @gray;
+}
+
+cite {
+  font-style: italic;
+}
+
+blockquote {
+  border-left-width: 1px;
+  color: @gray;
+
+  &.pull-right {
+    border-right-width: 1px;
+  }
+
+  small {
+    font-size: @font-size-small;
+    font-weight: 300;
+  }
+}
+
+// Tables =====================================================================
+
+table {
+  font-size: @font-size-small;
+}
+
+// Forms ======================================================================
+
+label,
+.control-label,
+.help-block,
+.checkbox,
+.radio {
+  font-size: @font-size-small;
+  font-weight: normal;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin-top: 1px;
+}
+
+.form-control:focus{
+  border-bottom: 1px solid @brand-info;
+}
+.form-control:focus,
+.has-success .form-control:focus,
+.has-error .form-control:focus,
+.has-warning .form-control:focus{
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+
+// Navs =======================================================================
+
+.nav {
+  .open > a,
+  .open > a:hover,
+  .open > a:focus {
+    border-color: transparent;
+  }
+}
+
+.nav-tabs {
+  > li > a {
+    background-color: @btn-default-bg;
+    color: @text-color;
+  }
+
+  .caret {
+    border-top-color: @text-color;
+    border-bottom-color: @text-color;
+  }
+}
+
+.nav-pills {
+  font-weight: 300;
+  > li.active{
+    a, a:hover, a:focus{
+      .brand-primary-gradient();
+    }
+  }
+}
+
+.breadcrumb {
+  font-size: 0.8em;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.pagination {
+  font-size: @font-size-small;
+  font-weight: 300;
+  color: @gray-light;
+
+  > li {
+    > a,
+    > span {
+      margin-left: 4px;
+      color: @gray-light;
+    }
+  }
+
+  > .active {
+    > a,
+    > span {
+      color: #fff;
+    }
+  }
+
+  > li,
+  > li:first-child,
+  > li:last-child {
+    > a,
+    > span {
+      border-radius: 3px;
+    }
+  }
+
+  &-lg > li > a,
+  &-lg > li > span {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  &-sm > li > a,
+  &-sm > li > span {
+    padding: 0 5px;
+  }
+}
+
+.pager {
+  font-size: @font-size-small;
+  font-weight: 300;
+  color: @gray-light;
+}
+
+.list-group {
+  font-size: @font-size-small;
+  font-weight: 300;
+}
+
+// Indicators =================================================================
+
+.close {
+  opacity: 0.4;
+  text-decoration: none;
+  text-shadow: none;
+
+  &:hover,
+  &:focus {
+    opacity: 1;
+  }
+}
+
+.alert {
+  font-size: @font-size-small;
+  font-weight: 300;
+
+  .alert-link {
+    font-weight: normal;
+    color: #fff;
+    text-decoration: underline;
+  }
+}
+
+.label {
+  padding-left: 1em;
+  padding-right: 1em;
+  border-radius: 0;
+  font-weight: 300;
+
+  &-default {
+    background-color: @btn-default-bg;
+    color: @btn-default-color;
+  }
+}
+
+.badge {
+  font-weight: 300;
+}
+
+// Progress bars ==============================================================
+
+.progress {
+  height: 22px;
+  padding: 2px;
+  background-color: #f6f6f6;
+  border: 1px solid #ccc;
+  .box-shadow(none);
+}
+
+// Containers =================================================================
+
+.dropdown {
+
+  &-menu {
+    padding: 0;
+    margin-top: 0;
+    //font-size: @font-size-small;
+
+    > li > a {
+      padding: 12px 15px;
+    }
+  }
+
+  &-header {
+    padding-left: 15px;
+    padding-right: 15px;
+    //font-size: 9px;
+    text-transform: uppercase;
+  }
+}
+
+.popover {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.panel {
+  &-heading,
+  &-footer {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
+
+  &-default {
+    .close {
+      color: @text-color;
+    }
+  }
+}
+
+.modal {
+  .close {
+    color: @text-color;
+  }
+}

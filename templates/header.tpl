@@ -2,9 +2,15 @@
 <html lang="{function.localeToHTML, userLang, defaultLang}" <!-- IF languageDirection -->data-dir="{languageDirection}" style="direction: {languageDirection};" <!-- ENDIF languageDirection --> >
 <head>
 	<title>{browserTitle}</title>
+	
+	<!-- IF config.enableAmpSupport -->
+		<meta name="viewport" content="width=device-width,minimum-scale=1">
+	<!-- ELSE -->
+	<!-- ENDIF config.enableAmpSupport -->
+
 	<!-- BEGIN metaTags -->{function.buildMetaTag}<!-- END metaTags -->
+
 	<link rel="stylesheet" type="text/css" href="{relative_path}/assets/stylesheet.css?{config.cache-buster}" />
-	<!-- IF bootswatchCSS --><link id="bootswatchCSS" href="{bootswatchCSS}" rel="stylesheet" media="screen"><!-- ENDIF bootswatchCSS -->
 	<!-- BEGIN linkTags -->{function.buildLinkTag}<!-- END linkTags -->
 
 	<script>
@@ -17,6 +23,18 @@
 	</script>
 
 	<script src="{relative_path}/assets/nodebb.min.js?{config.cache-buster}"></script>
+
+
+	<script async src="//cdn.ampproject.org/v0.js"></script>
+
+	<script async custom-element="amp-facebook" src="https://cdn.ampproject.org/v0/amp-facebook-0.1.js"></script>
+	<script async custom-element="amp-twitter" src="//cdn.ampproject.org/v0/amp-twitter-0.1.js"></script>
+	<script async custom-element="amp-instagram" src="//cdn.ampproject.org/v0/amp-instagram-0.1.js"></script>
+	<script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
+	<script async custom-element="amp-image-lightbox" src="https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js"></script>
+	<script async custom-element="amp-audio" src="https://cdn.ampproject.org/v0/amp-audio-0.1.js"></script>
+	<script async custom-element="amp-soundcloud" src="https://cdn.ampproject.org/v0/amp-soundcloud-0.1.js"></script>
+
 
 	<!-- BEGIN scripts -->
 	<script type="text/javascript" src="{scripts.src}"></script>

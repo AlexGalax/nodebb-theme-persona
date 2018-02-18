@@ -1,0 +1,36 @@
+.embed-wrapper{
+    display: inline-block;
+    width: 100%;
+    .embed-container{
+        height: auto;
+    }
+}
+
+
+@media (min-width: @screen-sm-min) {
+
+    .embed-wrapper{
+        &.embed-twitter{
+            width: 375px;
+        }
+        &.embed-facebook{
+            width: 500px;
+        }
+        &.embed-soundcloud{
+            width: 94%;
+        }
+        &.embed-audio{
+            width: 500px;
+        }
+        &.embed-instagram{
+            width: 500px;
+            .embed-container{
+                amp-instagram{
+                    border: 1px solid rgb(225, 232, 237);
+                    border-radius: 4px;
+                }
+            }
+        }
+    }
+
+}

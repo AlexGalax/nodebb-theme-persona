@@ -75,6 +75,9 @@
 			p {
 				margin: 0 0 2px;
 			}
+			img{
+				max-height: 235px;
+			}
 		}
 
 		.post-body {
@@ -92,8 +95,16 @@
 			font-size: 10px;
 
 			.post-author {
-				padding-left: 25px;
-				color: lighten(@gray-base, 65%);
+
+				padding: 5px 0 5px 40px;
+				margin-left: -20px;
+				margin-top: -5px;
+				border-radius: 20px;
+
+				color: @btn-primary-color;
+				.brand-primary-gradient();
+
+				//color: lighten(@gray-base, 65%);
 
 				a {
 					color: @gray-light;
