@@ -1,13 +1,7 @@
 {
     "id": "nodebb-theme-soleclub",
-<<<<<<< HEAD
     "name": "Sole Club",
     "description": "Custom theme based on the default persona theme.",
     "url": "https://github.com/AlexGalax/nodebb-theme-soleclub",
-=======
-    "name": "Soleclub",
-    "description": "Custom theme for https://www.soleclub.de. Based on persona theme.",
-    "url": "https://github.com/psychobunny/nodebb-theme-soleclub",
->>>>>>> origin/master
     "screenshot": "screenshot.png"
 }

@@ -8,11 +8,9 @@
 		{ "hook": "static:app.load", "method": "init" },
 		{ "hook": "filter:admin.header.build", "method": "addAdminNavigation" },
 		{ "hook": "filter:topic.build", "method": "addUserToTopic" },
-<<<<<<< HEAD
+		{ "hook": "filter:meta.getLinkTags", "method": "getLinkTags"},
+
 		{ "hook": "filter:parse.post",      "method": "parsePost" }
-=======
-		{ "hook": "filter:meta.getLinkTags", "method": "getLinkTags"}
->>>>>>> refs/remotes/NodeBB/master
 	],
 	"scripts": [
 		"lib/persona.js",
@@ -25,10 +23,6 @@
 	},
 	"acpScripts": [
 		"lib/admin.js"
-<<<<<<< HEAD
 	],
 	"templates": "templates"
-=======
-	]
->>>>>>> origin/master
 }

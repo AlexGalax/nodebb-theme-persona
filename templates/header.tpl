@@ -2,7 +2,7 @@
 <html lang="{function.localeToHTML, userLang, defaultLang}" <!-- IF languageDirection -->data-dir="{languageDirection}" style="direction: {languageDirection};" <!-- ENDIF languageDirection --> >
 <head>
 	<title>{browserTitle}</title>
-	
+
 	<!-- IF config.enableAmpSupport -->
 		<meta name="viewport" content="width=device-width,minimum-scale=1">
 	<!-- ELSE -->
@@ -22,9 +22,7 @@
 		};
 	</script>
 
-<<<<<<< HEAD
 	<script src="{relative_path}/assets/nodebb.min.js?{config.cache-buster}"></script>
-
 
 	<script async src="//cdn.ampproject.org/v0.js"></script>
 
@@ -44,11 +42,11 @@
 	<!-- IF useCustomJS -->
 	{{customJS}}
 	<!-- ENDIF useCustomJS -->
-=======
+
 	<!-- IF useCustomHTML -->
 	{{customHTML}}
 	<!-- END -->
->>>>>>> refs/remotes/NodeBB/master
+
 	<!-- IF useCustomCSS -->
 	<style>{{customCSS}}</style>
 	<!-- END -->

@@ -6,8 +6,6 @@
 				<div class="icon pull-left" style="{function.generateCategoryBackground}">
 					<i class="fa fa-fw {../icon}"></i>
 				</div>
-
-<<<<<<< HEAD
 				<h2 class="title">
 					<!-- IMPORT partials/categories/link.tpl --><br/>
 					<!-- IF ../descriptionParsed -->
@@ -27,34 +25,6 @@
 					<!-- ENDIF ../teaser.timestampISO -->
 				</span>
 			</div>
-=======
-	<div class="content col-xs-12 <!-- IF config.hideCategoryLastPost -->col-md-10 col-sm-12<!-- ELSE -->col-md-7 col-sm-9<!-- ENDIF config.hideCategoryLastPost -->">
-		<div class="icon pull-left" style="{function.generateCategoryBackground}">
-			<i class="fa fa-fw {../icon}"></i>
-		</div>
-
-		<h2 class="title">
-			<!-- IMPORT partials/categories/link.tpl -->
-		</h2>
-		<div>
-			<!-- IF ../descriptionParsed -->
-			<div class="description">
-				{../descriptionParsed}
-			</div>
-			<!-- ENDIF ../descriptionParsed -->
-			<!-- IF !config.hideSubCategories -->
-			{function.generateChildrenCategories}
-			<!-- ENDIF !config.hideSubCategories -->
-		</div>
-		<span class="visible-xs pull-right">
-			<!-- IF ../teaser.timestampISO -->
-			<a class="permalink" href="{../teaser.url}">
-				<small class="timeago" title="{../teaser.timestampISO}"></small>
-			</a>
-			<!-- ENDIF ../teaser.timestampISO -->
-		</span>
-	</div>
->>>>>>> refs/remotes/NodeBB/master
 
 			<!-- IF !../link -->
 			<div class="col-md-1 hidden-sm hidden-xs stats">

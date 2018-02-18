@@ -22,24 +22,17 @@
 			<!-- IF posts.user.banned -->
 			<span class="label label-danger">[[user:banned]]</span>
 			<!-- ENDIF posts.user.banned -->
-
-<<<<<<< HEAD
-			<div class="visible-xs-inline-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
+			<span class="visible-xs-inline-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
 				<a class="permalink" href="{config.relative_path}/post/{posts.pid}"><span class="timeago" title="{posts.timestampISO}"></span></a>
-=======
-		<span class="visible-xs-inline-block visible-sm-inline-block visible-md-inline-block visible-lg-inline-block">
-			<a class="permalink" href="{config.relative_path}/post/{posts.pid}"><span class="timeago" title="{posts.timestampISO}"></span></a>
->>>>>>> refs/remotes/NodeBB/master
 
-				<i class="fa fa-pencil-square pointer edit-icon <!-- IF !posts.editor.username -->hidden<!-- ENDIF !posts.editor.username -->"></i>
+					<i class="fa fa-pencil-square pointer edit-icon <!-- IF !posts.editor.username -->hidden<!-- ENDIF !posts.editor.username -->"></i>
 
-				<small data-editor="{posts.editor.userslug}" component="post/editor" class="hidden">[[global:last_edited_by, {posts.editor.username}]] <span class="timeago" title="{posts.editedISO}"></span></small>
+					<small data-editor="{posts.editor.userslug}" component="post/editor" class="hidden">[[global:last_edited_by, {posts.editor.username}]] <span class="timeago" title="{posts.editedISO}"></span></small>
 
-				<!-- IF posts.toPid -->
-				<a component="post/parent" class="btn btn-xs btn-default hidden-xs" data-topid="{posts.toPid}" href="/post/{posts.toPid}"><i class="fa fa-reply"></i> @<!-- IF posts.parent.username -->{posts.parent.username}<!-- ELSE -->[[global:guest]]<!-- ENDIF posts.parent.username --></a>
-				<!-- ENDIF posts.toPid -->
+					<!-- IF posts.toPid -->
+					<a component="post/parent" class="btn btn-xs btn-default hidden-xs" data-topid="{posts.toPid}" href="/post/{posts.toPid}"><i class="fa fa-reply"></i> @<!-- IF posts.parent.username -->{posts.parent.username}<!-- ELSE -->[[global:guest]]<!-- ENDIF posts.parent.username --></a>
+					<!-- ENDIF posts.toPid -->
 
-<<<<<<< HEAD
 				<span>
 					<!-- IF posts.user.custom_profile_info.length -->
 					&#124;
@@ -48,21 +41,8 @@
 					<!-- END custom_profile_info -->
 					<!-- ENDIF posts.user.custom_profile_info.length -->
 				</span>
-			</div>
-			<span class="bookmarked"><i class="fa fa-bookmark-o"></i></span>
-=======
-			<span>
-				<!-- IF posts.user.custom_profile_info.length -->
-				&#124;
-				<!-- BEGIN custom_profile_info -->
-				{posts.user.custom_profile_info.content}
-				<!-- END custom_profile_info -->
-				<!-- ENDIF posts.user.custom_profile_info.length -->
 			</span>
-		</span>
-		<span class="bookmarked"><i class="fa fa-bookmark-o"></i></span>
->>>>>>> refs/remotes/NodeBB/master
-
+			<span class="bookmarked"><i class="fa fa-bookmark-o"></i></span>
 		</div>
 	</div>
 	<div class="panel-body row">
@@ -81,7 +61,7 @@
   			<amp-social-share data-param-url="{config.url}/post/{posts.pid}" type="twitter"></amp-social-share>
   			<amp-social-share data-param-url="{config.url}/post/{posts.pid}" type="whatsapp"></amp-social-share>
 		</div>-->
-		
+
 		<!-- IF posts.user.signature -->
 		<div component="post/signature" data-uid="{posts.user.uid}" class="post-signature">{posts.user.signature}</div>
 		<!-- ENDIF posts.user.signature -->

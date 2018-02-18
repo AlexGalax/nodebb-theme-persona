@@ -1,15 +1,6 @@
 {
-<<<<<<< HEAD
   "name": "nodebb-theme-soleclub",
-<<<<<<< HEAD
-  "version": "5.0.31",
-=======
-  "version": "0.0.01",
->>>>>>> origin/master
-=======
-  "name": "nodebb-theme-persona",
   "version": "7.2.23",
->>>>>>> refs/remotes/NodeBB/master
   "nbbpm": {
     "compatibility": "^1.7.0"
   },
@@ -17,11 +8,7 @@
   "main": "theme.less",
   "repository": {
     "type": "git",
-<<<<<<< HEAD
     "url": "https://github.com/psychobunny/nodebb-theme-soleclub"
-=======
-    "url": "https://github.com/AlexGalax/nodebb-theme-soleclub"
->>>>>>> origin/master
   },
   "keywords": [
     "nodebb",
@@ -39,18 +26,10 @@
   ],
   "license": "BSD-2-Clause",
   "bugs": {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "url": "https://github.com/psychobunny/nodebb-theme-soleclub/issues"
-=======
-    "url": "https://github.com/AlexGalax/nodebb-theme-soleclub/issues"
->>>>>>> origin/master
-=======
-    "url": "https://github.com/psychobunny/nodebb-theme-persona/issues"
+      "url": "https://github.com/AlexGalax/nodebb-theme-soleclub/issues"
   },
   "dependencies": {
     "striptags": "^3.1.1",
     "pulling": "^1.1.1"
->>>>>>> refs/remotes/NodeBB/master
   }
 }

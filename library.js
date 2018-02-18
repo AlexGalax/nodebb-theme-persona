@@ -1,9 +1,6 @@
 'use strict';
 
-<<<<<<< HEAD
 var async = require('async');
-=======
->>>>>>> refs/remotes/NodeBB/master
 var striptags = require('striptags');
 var meta = module.parent.require('./meta');
 var user = module.parent.require('./user');
@@ -45,28 +42,17 @@ library.init = function(params, callback) {
 	var router = params.router;
 	var middleware = params.middleware;
 
-<<<<<<< HEAD
 	router.get('/admin/plugins/soleclub', middleware.admin.buildHeader, renderAdmin);
 	router.get('/api/admin/plugins/soleclub', renderAdmin);
-=======
-	app.get('/admin/plugins/soleclubtheme', middleware.admin.buildHeader, renderAdmin);
-	app.get('/api/admin/plugins/soleclubtheme', renderAdmin);
->>>>>>> origin/master
 
 	callback();
 };
 
 library.addAdminNavigation = function(header, callback) {
 	header.plugins.push({
-<<<<<<< HEAD
 		route: '/plugins/soleclub',
 		icon: 'fa-paint-brush',
 		name: 'SoleClub Theme'
-=======
-		route: '/plugins/soleclubtheme',
-		icon: 'fa-paint-brush',
-		name: 'Soleclub Theme'
->>>>>>> origin/master
 	});
 
 	callback(null, header);
@@ -75,11 +61,7 @@ library.addAdminNavigation = function(header, callback) {
 library.getTeasers = function(data, callback) {
 	data.teasers.forEach(function(teaser) {
 		if (teaser && teaser.content) {
-<<<<<<< HEAD
-			teaser.content = striptags(reaser.content, ['img']);
-=======
 			teaser.content = striptags(teaser.content, ['img']);
->>>>>>> refs/remotes/NodeBB/master
 		}
 	});
 	callback(null, data);
@@ -139,11 +121,7 @@ library.defineWidgetAreas = function(areas, callback) {
 
 library.getThemeConfig = function(config, callback) {
 
-<<<<<<< HEAD
 	meta.settings.get('soleclub', function(err, settings) {
-=======
-	meta.settings.get('soleclubtheme', function(err, settings) {
->>>>>>> origin/master
 		config.hideSubCategories = settings.hideSubCategories === 'on';
 		config.hideCategoryLastPost = settings.hideCategoryLastPost === 'on';
 		config.enableQuickReply = settings.enableQuickReply === 'on';
@@ -156,11 +134,7 @@ library.getThemeConfig = function(config, callback) {
 };
 
 function renderAdmin(req, res, next) {
-<<<<<<< HEAD
 	res.render('admin/plugins/soleclub', {});
-=======
-	res.render('admin/plugins/soleclubtheme', {});
->>>>>>> origin/master
 }
 
 library.addUserToTopic = function(data, callback) {
@@ -178,7 +152,6 @@ library.addUserToTopic = function(data, callback) {
 	}
 };
 
-<<<<<<< HEAD
 library.parsePost = function (payload, callback) {
 
 	var content = payload.postData.content,
@@ -206,8 +179,8 @@ library.parsePost = function (payload, callback) {
 		payload.postData.content = result;
 		callback(null, payload);
 	});
+};
 
-=======
 library.getLinkTags = function (data, callback) {
 	data.links.push({
 		rel: 'prefetch stylesheet',
@@ -216,7 +189,6 @@ library.getLinkTags = function (data, callback) {
 	});
 
 	callback(null, data);
->>>>>>> refs/remotes/NodeBB/master
 };
 
 module.exports = library;
