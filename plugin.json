@@ -20,6 +20,10 @@
 	],
 	"acpScripts": [
 		"lib/admin.js"
+<<<<<<< HEAD
 	],
 	"templates": "templates"
+=======
+	]
+>>>>>>> origin/master
 }

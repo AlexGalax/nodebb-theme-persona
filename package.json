@@ -1,6 +1,10 @@
 {
   "name": "nodebb-theme-soleclub",
+<<<<<<< HEAD
   "version": "5.0.31",
+=======
+  "version": "0.0.01",
+>>>>>>> origin/master
   "nbbpm": {
     "compatibility": "^1.4.4"
   },
@@ -8,7 +12,11 @@
   "main": "theme.less",
   "repository": {
     "type": "git",
+<<<<<<< HEAD
     "url": "https://github.com/psychobunny/nodebb-theme-soleclub"
+=======
+    "url": "https://github.com/AlexGalax/nodebb-theme-soleclub"
+>>>>>>> origin/master
   },
   "keywords": [
     "nodebb",
@@ -26,6 +34,10 @@
   ],
   "license": "BSD-2-Clause",
   "bugs": {
+<<<<<<< HEAD
     "url": "https://github.com/psychobunny/nodebb-theme-soleclub/issues"
+=======
+    "url": "https://github.com/AlexGalax/nodebb-theme-soleclub/issues"
+>>>>>>> origin/master
   }
 }
